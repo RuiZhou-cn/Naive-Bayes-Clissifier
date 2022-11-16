@@ -1,10 +1,10 @@
-### Math
+# Math
 
-$P(A \and B)=P(A|B)P(B)=P(B|A)P(A)$
+$P(A\land B)=P(A|B)P(B)=P(B|A)P(A)$
 
-$P(A \or B)=P(A)+P(B)-P(A \and B)$
+$P(A\lor B)=P(A)+P(B)-P(A\land B)$
 
-$P(B)=\sum_{i=1}^nP(B|A_i)P(A_i)$
+$P(B)=\sum_{i=1}^{n}P(B|A_i)P(A_i)$
 
 $P(h|D)=\frac{P(D,h)}{P(D)}=\frac{P(D|h)P(h)}{P(D)}$ 
 
@@ -31,7 +31,7 @@ $h_{MAP}=arg \max_hP(h|D)=arg \max_hP(D|h)P(h)$
 1. 所有h都给一个相同的先验概率，计算时可忽略
 2. 每一类样本出现的频率代替概率
 
-### 朴素贝叶斯
+# 朴素贝叶斯
 
 类条件概率在D维数较高时较难计算，朴素贝叶斯分类器通过假设每一维都是独立来减少运算量，但可能会因为数据的某些维度有关联，导致效果不好。
 
@@ -42,17 +42,17 @@ $P(D|h)=P(d_1,...,d_2|h)=\prod_iP(d_i|h)$，在朴素贝叶斯假设下，计算
 * 贝叶斯信念网络(BBN）-假设某些维度存在关联
 * 高斯混合模型
 
-#### 文本分类
+## 文本分类
 
 在文本分类场景下，$h$是文本类别，最终是根据后验概率大小决定是哪一类文本。
 
-##### Learning
+### Learning
 
-###### 先验概率：
+#### 先验概率：
 
 可以用已有知识或者用每一类样本出现频率代替。
 
-###### 条件概率：
+#### 条件概率：
 
 我们用每个位置出现的单词的概率来分析文本，如有like, dislike两类，每个文本19个单词，词汇表中总共有5000个单词，则总共需要计算2x19x5000个概率，太复杂了，因此我们不考虑单词的位置，只考虑单词的统计个数。
 
@@ -64,11 +64,11 @@ $P(w_i|h_j)=(n_j^i+1)/(n_j+|Vocabulary|)$
 
 因为某些单词如果在训练集中没有出现，那么他的概率为0，会导致整个后验概率为0，因此在分子加1，在分母加整个词汇大小
 
-##### 分类
+### 分类
 <img src="./assets/image-20221115191244430.png" alt="image-20221115191244430" style="zoom: 55%;" />
 ##### 以20Newsgroups为数据集进行朴素贝叶斯分类器的训练与测试
 
-###### 训练过程
+#### 训练过程
 
 得到Vocabulary
 
@@ -90,15 +90,15 @@ $P(w_i|h_j)=(n_j^i+1)/(n_j+|Vocabulary|)$
 
 ​						$P(w_i|h_j)=\frac{n_j^i+1}{n_j+|Vocabulary|}$ # 在j类文档中wi的类条件概率
 
-##### 测试过程
+### 测试过程
 
 $h_{NB}=argmax_{h_j\in H}P(h_j)\prod_{i=1}^{N}P(w_i|h_j)$
 
 概率值最大的类对应文章的类别
 
-##### 代码实现
+### 代码实现
 
-###### 用Sklearn中自带的贝叶斯分类器实现
+#### 用Sklearn中自带的贝叶斯分类器实现
 
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -118,7 +118,7 @@ print("预测文章的类型：", y_predict)
 print("The accuracy: ", bayes.score(x_test, y_test))
 ```
 
-###### 自己的实现
+#### 自己的实现
 
 导入数据
 
@@ -158,7 +158,7 @@ for sample_id, sample in enumerate(x_train):
 word_list = list(word_set)
 ```
 
-###### Classifier learning
+#### Classifier learning
 
 * prob_mat: 类条件概率
   * size of[label_num（类别数）, word_num（Vocabulary大小）]
@@ -194,7 +194,7 @@ for label_id, label in enumerate(news.target_names):
         prob_mat[label_id, word_id] = prob
 ```
 
-###### News article classification
+#### News article classification
 
 * The steps for testing:
   * Tokenize the articles in test data (数据预处理)
@@ -232,7 +232,7 @@ for sample_id, sample in tqdm(enumerate(x_test), total = len(x_test)):
     predict_labels[sample_id] = predict_label
 ```
 
-###### Results
+#### Results
 
 * Calculate the accuracy of the prediction among all of the categories
 
