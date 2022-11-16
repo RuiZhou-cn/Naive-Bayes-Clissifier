@@ -66,7 +66,8 @@ $P(w_i|h_j)=(n_j^i+1)/(n_j+|Vocabulary|)$
 
 ### 分类
 <img src="./assets/image-20221115191244430.png" alt="image-20221115191244430" style="zoom: 55%;" />
-##### 以20Newsgroups为数据集进行朴素贝叶斯分类器的训练与测试
+
+### 以20Newsgroups为数据集进行朴素贝叶斯分类器的训练与测试
 
 #### 训练过程
 
