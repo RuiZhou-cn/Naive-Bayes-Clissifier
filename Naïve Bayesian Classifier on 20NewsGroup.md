@@ -1,23 +1,5 @@
 # Naïve Bayesian Classifier on 20NewsGroup
 
-## 环境配置
-
-python=3.8
-
-安装sklearn包
-
-`conda install scikit-learn`
-
-使用Jupyter Notebook编程
-
-首先把刚才创建的环境添加到Jupyter Notebook中，下载ipykernel
-
-`pip install --user ipykernel`
-
-接下来将环境添加到Jupyter中：
-
-`python -m ipykernel install --user --name=yourenv`
-
 ## 朴素贝叶斯算法
 
 ### Math
@@ -225,7 +207,7 @@ for label_id, label in enumerate(news.target_names):
   * Calculate the probability of the article belongs to each label（计算文章属于每一类的概率）
   * Classify it with the highest one（将文章分类为上面计算概率最大的类）
 * Issue:
-  * To avoid the product of probabilities getting too close to0, we use log likelihood equation: Convert product to addition
+  * To avoid the product of probabilities getting too close to0, we use log likelihood equation: Convert product to addition（因为概率都是小数，连乘后结果很小，因此用log likelihood把连乘变成累加）
 
 ```python
 import math
