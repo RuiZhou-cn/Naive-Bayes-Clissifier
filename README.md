@@ -12,9 +12,9 @@
 
 ## 代码实现
 
-##### 以20Newsgroups为数据集进行朴素贝叶斯分类器的训练与测试
+### 以20Newsgroups为数据集进行朴素贝叶斯分类器的训练与测试
 
-###### 训练过程
+#### 训练过程
 
 得到Vocabulary
 
@@ -36,15 +36,13 @@
 
 ​						$P(w_i|h_j)=\frac{n_j^i+1}{n_j+|Vocabulary|}$ # 在j类文档中wi的类条件概率
 
-##### 测试过程
+#### 测试过程
 
 $h_{NB}=argmax_{h_j\in H}P(h_j)\prod_{i=1}^{N}P(w_i|h_j)$
 
 概率值最大的类对应文章的类别
 
-##### 代码实现
-
-###### 用Sklearn中自带的贝叶斯分类器实现
+#### 用Sklearn中自带的贝叶斯分类器实现
 
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -64,7 +62,7 @@ print("预测文章的类型：", y_predict)
 print("The accuracy: ", bayes.score(x_test, y_test))
 ```
 
-###### 自己的实现
+#### 自己的实现
 
 导入数据
 
