@@ -17,24 +17,23 @@
 #### 训练过程
 
 得到Vocabulary
-
-​		把所有文档单词拿出来，但要过滤掉重复的单词
+    把所有文档单词拿出来，但要过滤掉重复的单词
 
 计算先验概率$p(h_j)$和类条件概率$P(w_i|h_j)$（此处共20类，i=Vocabulary大小）
 
-​		for each target value $h_i$ in H
+    for each target value $h_i$ in H
 
-​				把所有hi类的文章拿出来，构成一个子集=$artics_j$
+        把所有hi类的文章拿出来，构成一个子集=$artics_j$
 
-​				$P(h_j)=\frac{|artics_j|}{|Training data|}$ # 计算每一类的先验概率
+        $P(h_j)=\frac{|artics_j|}{|Training data|}$ # 计算每一类的先验概率
 
-​				计算$artics_j$中总单词个数$n_j$
+        计算$artics_j$中总单词个数$n_j$
 
-​				for each word $w_i$ in Vocabulary # 计算每个单词$w_i$的类条件概率
+        for each word $w_i$ in Vocabulary # 计算每个单词$w_i$的类条件概率
 
-​						计算$artics_j$类文档中$w_i$单词出现的次数=$n_j^i$
+            计算$artics_j$类文档中$w_i$单词出现的次数=$n_j^i$
 
-​						$P(w_i|h_j)=\frac{n_j^i+1}{n_j+|Vocabulary|}$ # 在j类文档中wi的类条件概率
+            $P(w_i|h_j)=\frac{n_j^i+1}{n_j+|Vocabulary|}$ # 在j类文档中wi的类条件概率
 
 #### 测试过程
 
